@@ -26,7 +26,7 @@ class ProjetoServiceTest {
     private CidadeRepository cidadeRepository;
 
     @InjectMocks
-    private ProjetoService projetoService;
+    private CidadeService projetoService;
 
     @Test
     void devePesquisarCidadePeloId() {

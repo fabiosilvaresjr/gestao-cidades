@@ -1,7 +1,7 @@
 package com.placeti.avaliacao.controller;
 
 import com.placeti.avaliacao.dto.CidadeDTO;
-import com.placeti.avaliacao.service.ProjetoService;
+import com.placeti.avaliacao.service.CidadeService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,10 +24,10 @@ import java.util.List;
 @RequestMapping("/cidades")
 public class CidadeController {
 
-	private final ProjetoService projetoService;
+	private final CidadeService cidadeService;
 
-	public CidadeController(ProjetoService projetoService) {
-		this.projetoService = projetoService;
+	public CidadeController(CidadeService cidadeService) {
+		this.cidadeService = cidadeService;
 	}
 
 	//----------------------------------------------------------
@@ -35,7 +35,7 @@ public class CidadeController {
 	//----------------------------------------------------------
 	@GetMapping("/{id}")
 	public ResponseEntity<CidadeDTO> buscarPeloId(@PathVariable Long id) {
-		return ResponseEntity.ok(projetoService.pesquisarCidade(id));
+		return ResponseEntity.ok(cidadeService.pesquisarCidade(id));
 	}
 	
 	//----------------------------------------------------------
@@ -43,15 +43,39 @@ public class CidadeController {
 	//----------------------------------------------------------
 	@GetMapping
 	public List<CidadeDTO> pesquisarCidades() {
-		return projetoService.pesquisarCidades();
+		return cidadeService.pesquisarCidades();
 	}
-	
+
+	//----------------------------------------------------------
+	/** Endpoint que retorna todas as cidades que são capitais */
+	//----------------------------------------------------------
+	@GetMapping("/capitais")
+	public List<CidadeDTO> buscarCapitais() {
+		return cidadeService.pesquisarCapitais();
+	}
+
+	//----------------------------------------------------------
+	/** Endpoint que retorna a cidade por uma parte */
+	//----------------------------------------------------------
+	@GetMapping("/nome/{nome}")
+	public List<CidadeDTO> buscarPorNome(@PathVariable String nome) {
+		return cidadeService.buscarPorNome(nome);
+	}
+
+	//----------------------------------------------------------
+	/** Endpoint que retorna a cidade por UF */
+	//----------------------------------------------------------
+	@GetMapping("/uf/{uf}")
+	public List<CidadeDTO> buscarPorUf(@PathVariable String uf) {
+		return cidadeService.buscarPorUf(uf);
+	}
+
 	//----------------------------------------------------------
 	/** Endpoint para incluir nova cidade */
 	//----------------------------------------------------------
 	@PostMapping
 	public void incluirCidade(@Valid @RequestBody CidadeDTO cidadeDto) {
-		projetoService.incluirCidade(cidadeDto);
+		cidadeService.incluirCidade(cidadeDto);
 	}	
 	
 	//----------------------------------------------------------
@@ -59,7 +83,7 @@ public class CidadeController {
 	//----------------------------------------------------------
 	@PutMapping
 	public void alterarCidade(@Valid @RequestBody CidadeDTO cidadeDto) {
-		projetoService.alterarCidade(cidadeDto);
+		cidadeService.alterarCidade(cidadeDto);
 	}
 	
 	//----------------------------------------------------------
@@ -67,6 +91,6 @@ public class CidadeController {
 	//----------------------------------------------------------
 	@DeleteMapping("/{idCidade}")
 	public void excluirCidade(@PathVariable Long idCidade) {
-		projetoService.excluirCidade(idCidade);
+		cidadeService.excluirCidade(idCidade);
 	}	
 }
