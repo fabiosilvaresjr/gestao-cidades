@@ -1,28 +1,65 @@
+# API de Cidades
 
--------------------------------------------------------------------------------
-Após subir o backend o banco H2 pode ser acessado no seguinte endereço:
--------------------------------------------------------------------------------
+Projeto backend em Spring Boot para gerenciamento de cidades e comércios.
+
+---
+
+## Funcionalidades
+
+- Buscar cidade por ID  
+- Listar todas as cidades  
+- Filtrar cidades por:
+  - Nome
+  - UF
+  - Capitais  
+
+---
+
+## Tecnologias utilizadas
+
+- Java 17  
+- Spring Boot  
+- Spring Data JPA  
+- Hibernate  
+- Banco H2  
+
+---
+
+## Como rodar o projeto
+
+No IntelliJ ou terminal: 
+mvn spring-boot:run
+
+---
+
+## Endpoints disponíveis
+
+- GET /cidades  
+- GET /cidades/{id}  
+- GET /cidades/capitais  
+- GET /cidades/nome/{nome}  
+- GET /cidades/uf/{uf}  
+
+---
+
+## Banco H2 (console)
+
+Acesse no navegador:
 
 http://localhost:8080/placeti/h2-console
 
--------------------------------------------------------------------------------
-Use os seguintes dados para conexão no H2:
--------------------------------------------------------------------------------
+Dados de conexão:
 
-url: jdbc:h2:mem:database
-usuario: admin
-senha: admin
+- URL: jdbc:h2:mem:database  
+- Usuário: admin  
+- Senha: admin  
 
--------------------------------------------------------------------------------
-Para configurar o front end:
--------------------------------------------------------------------------------
+---
 
-npm install
+## Observações
 
-npm start
+Este projeto foi desenvolvido como prática de backend com Spring Boot, com foco em:
 
--------------------------------------------------------------------------------
-Para acessar o front end:
--------------------------------------------------------------------------------
-
-http://localhost:4200/#/
+- criação de APIs REST  
+- manipulação de dados com streams  
+- organização em camadas (controller, service, repository)  
