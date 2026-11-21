@@ -25,3 +25,7 @@ yarn-error.log*
 .idea/
 *.iml
 desafio-tecnico/*.pdf
+
+.idea/
+*.iml
+*.zip
